@@ -33,7 +33,7 @@
         <Button style = "-fx-font: NORMAL 20 Tahoma;" text="-" onAction="#subXY"/>
         <Button style = "-fx-font: NORMAL 20 Tahoma;" text="*" onAction="#mulXY"/>
         <Button style = "-fx-font: NORMAL 20 Tahoma;" text="/"  onAction="#divXY"/>
-		<Button style = "-fx-font: NORMAL 20 Tahoma;" text="x^y" onAction="#powXY"/>
+        <Button style = "-fx-font: NORMAL 20 Tahoma;" text="x^y" onAction="#powXY"/>
         <Button style = "-fx-font: NORMAL 20 Tahoma;" text="y^x" onAction="#powYX"/>
         <Button style = "-fx-font: NORMAL 20 Tahoma;" text="x mod y"  onAction="#XmodY"/>
     </HBox>
@@ -72,6 +72,9 @@
          GridPane.rowIndex="3" style = "-fx-font: NORMAL 12 Tahoma;">
        <Button text="Select"  onAction="#itemSelected"/>
        <Button text="Remove"  onAction="#itemRemove"/>
+       <Button text="Write"  onAction="#writeToFile"/>
+       <Button text="Read"  onAction="#readFromFile"/>
    </VBox>
+
 
 </GridPane>

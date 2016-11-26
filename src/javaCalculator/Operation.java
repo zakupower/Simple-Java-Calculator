@@ -67,8 +67,12 @@ public class Operation {
         return result;
     }
 
-
-
-
-
+    @Override
+    public String toString() {
+        return  opId +
+                "," + opX +
+                "," + opY +
+                "," + operation.get() +
+                "," + result;
+    }
 }

@@ -8,6 +8,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 
+import java.util.ArrayList;
+
 public class Controller {
     @FXML private TextField xField;
     @FXML private TextField yField;
@@ -119,6 +121,24 @@ public class Controller {
             row.forEach(allRows::remove);
         } else {
 
+        }
+    }
+    public void writeToFile(ActionEvent event) {
+        RWFile file = new RWFile("TestName.txt");
+        ObservableList<Operation> data = tableView.getItems();
+        for(Operation op : data) {
+            if(op!= null)
+            file.operationInput(op);
+        }
+        file.writeInformationToFile();
+    }
+    public void readFromFile(ActionEvent event) {
+        RWFile file = new RWFile("TestName.txt");
+        ObservableList<Operation> data = tableView.getItems();
+        data.clear();
+        ArrayList<Operation> ops = file.operationOutput();
+        for(Operation op : ops) {
+            data.add(op);
         }
     }
     private void decrementallRowsId(ObservableList<Operation> row) {
