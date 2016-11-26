@@ -56,8 +56,43 @@ public class Controller {
         resultField.setText(checkIfInt(result));
         addOperationToHistory(x,y,"*",result);
     }
+    public void powXY (ActionEvent event) {
+        double x = checkAndParse(xField.getText());
+        double y = checkAndParse(yField.getText());
+        double result;
+        result = Math.pow(x,y);
+        resultField.setText(checkIfInt(result));
+        addOperationToHistory(x,y,"x^y",result);
+    }
+    public void powYX (ActionEvent event) {
+        double x = checkAndParse(xField.getText());
+        double y = checkAndParse(yField.getText());
+        double result;
+        result = Math.pow(y,x);
+        resultField.setText(checkIfInt(result));
+        addOperationToHistory(x,y,"y^x",result);
+    }
+    public void XmodY (ActionEvent event) {
+        double x = checkAndParse(xField.getText());
+        double y = checkAndParse(yField.getText());
+        if(isInt(x) && isInt(y)) {
+           int result = ((int) x) % ((int) y);
+            resultField.setText("" + result);
+            addOperationToHistory(x,y,"x mod y",result);
+        } else {
+            double result = Double.NaN;
+            resultField.setText("Only integers.");
+            addOperationToHistory(x,y,"x mod y",result);
+        }
+    }
+
+    private boolean isInt(double x) {
+        x = Math.abs(x);
+       return !(Math.floor(x) < x);
+    }
+
     private String checkIfInt(double res) {
-        if(Math.floor(res) < res) {
+        if(Math.floor(res) != res) {
             return Double.toString(res);
         }
         else {
@@ -80,8 +115,8 @@ public class Controller {
         row = tableView.getSelectionModel().getSelectedItems();
 
         if(isSelected(row)) {
-            row.forEach(allRows::remove);
             decrementallRowsId(row);
+            row.forEach(allRows::remove);
         } else {
 
         }
@@ -130,6 +165,6 @@ public class Controller {
     }
     private boolean isNumeric(String str)
     {
-        return str.matches("\\d+(\\.\\d+)?");  //match a number and number with decimal .
+        return str.matches("\\d+|(\\.\\d+)|(-\\d+)");  //match a number and number with decimal .
     }
 }
