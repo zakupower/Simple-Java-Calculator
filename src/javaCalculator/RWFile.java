@@ -1,6 +1,8 @@
 package javaCalculator;
 
 
+
+
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
@@ -13,6 +15,7 @@ import java.util.List;
 /**
  * Created by Tomov on 26.11.2016 г..
  */
+
 public class RWFile {
     private String nameOfFile;
     private ArrayList<String> lines = new ArrayList<String>();
@@ -44,6 +47,7 @@ public class RWFile {
     }
     public ArrayList<Operation> operationOutput() {
         ArrayList<Operation> arr = new ArrayList<Operation>();
+
         for(String line : lines) {
             String[] elements = line.split(",");
             Operation op = new Operation(Integer.parseInt(elements[0]),
@@ -63,11 +67,12 @@ public class RWFile {
             exc.printStackTrace();
         }
     }
-    public void readFromFile(){
+    public boolean readFromFile(){
         try {
-           lines = (ArrayList<String>) Files.readAllLines(Paths.get(nameOfFile));
+            lines = (ArrayList<String>) Files.readAllLines(Paths.get(nameOfFile));
+            return true;
         } catch(IOException exc) {
-            exc.printStackTrace();
+            return false;
         }
 
     }

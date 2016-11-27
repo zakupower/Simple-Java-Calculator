@@ -8,13 +8,19 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 
+
+import java.io.IOException;
+import java.nio.file.NoSuchFileException;
 import java.util.ArrayList;
 
 public class Controller {
     @FXML private TextField xField;
     @FXML private TextField yField;
     @FXML private TextField resultField;
+    @FXML private TextField writeFileName;
+    @FXML private TextField readFileName;
     @FXML private TableView tableView;
+
 
     private int operationID = 0;
 
@@ -74,19 +80,7 @@ public class Controller {
         resultField.setText(checkIfInt(result));
         addOperationToHistory(x,y,"y^x",result);
     }
-    public void XmodY (ActionEvent event) {
-        double x = checkAndParse(xField.getText());
-        double y = checkAndParse(yField.getText());
-        if(isInt(x) && isInt(y)) {
-           int result = ((int) x) % ((int) y);
-            resultField.setText("" + result);
-            addOperationToHistory(x,y,"x mod y",result);
-        } else {
-            double result = Double.NaN;
-            resultField.setText("Only integers.");
-            addOperationToHistory(x,y,"x mod y",result);
-        }
-    }
+
 
     private boolean isInt(double x) {
         x = Math.abs(x);
@@ -124,7 +118,9 @@ public class Controller {
         }
     }
     public void writeToFile(ActionEvent event) {
-        RWFile file = new RWFile("TestName.txt");
+        String fileName = writeFileName.getText();
+        fileName += ".txt";
+        RWFile file = new RWFile(fileName);
         ObservableList<Operation> data = tableView.getItems();
         for(Operation op : data) {
             if(op!= null)
@@ -133,13 +129,20 @@ public class Controller {
         file.writeInformationToFile();
     }
     public void readFromFile(ActionEvent event) {
-        RWFile file = new RWFile("TestName.txt");
-        ObservableList<Operation> data = tableView.getItems();
-        data.clear();
-        ArrayList<Operation> ops = file.operationOutput();
-        for(Operation op : ops) {
-            data.add(op);
-        }
+            String fileName = readFileName.getText();
+            fileName += ".txt";
+            RWFile file = new RWFile(fileName);
+            if(file.readFromFile()) {
+                ObservableList<Operation> data = tableView.getItems();
+                data.clear();
+                ArrayList<Operation> ops = file.operationOutput();
+                for (Operation op : ops) {
+                    data.add(op);
+                    operationID = op.getOpId();
+                }
+            } else {
+                readFileName.setText("No Such File !");
+            }
     }
     private void decrementallRowsId(ObservableList<Operation> row) {
         ObservableList<Operation> data = tableView.getItems();

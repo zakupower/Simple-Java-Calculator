@@ -35,7 +35,6 @@
         <Button style = "-fx-font: NORMAL 20 Tahoma;" text="/"  onAction="#divXY"/>
         <Button style = "-fx-font: NORMAL 20 Tahoma;" text="x^y" onAction="#powXY"/>
         <Button style = "-fx-font: NORMAL 20 Tahoma;" text="y^x" onAction="#powYX"/>
-        <Button style = "-fx-font: NORMAL 20 Tahoma;" text="x mod y"  onAction="#XmodY"/>
     </HBox>
     <TableView fx:id="tableView" GridPane.columnIndex="0"
                GridPane.rowIndex="3"
@@ -72,8 +71,17 @@
          GridPane.rowIndex="3" style = "-fx-font: NORMAL 12 Tahoma;">
        <Button text="Select"  onAction="#itemSelected"/>
        <Button text="Remove"  onAction="#itemRemove"/>
-       <Button text="Write"  onAction="#writeToFile"/>
-       <Button text="Read"  onAction="#readFromFile"/>
+       <HBox>
+           <TextField fx:id="writeFileName" promptText="File name"
+                      prefWidth="90" />
+           <Button text="Write"  onAction="#writeToFile"/>
+       </HBox>
+       <HBox>
+           <TextField fx:id="readFileName" promptText="File name"
+                      prefWidth="90" />
+           <Button text="Read"  onAction="#readFromFile"/>
+       </HBox>
+
    </VBox>
 
 

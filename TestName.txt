@@ -1,1 +1,14 @@
-1,NaN,NaN,*,NaN
+1,98.0,98.0,+,196.0
+2,9898.0,89090.0,-,-79192.0
+3,8.0,2.0,x^y,64.0
+4,NaN,NaN,y^x,NaN
+5,NaN,NaN,y^x,NaN
+6,NaN,NaN,y^x,NaN
+7,NaN,NaN,x^y,NaN
+8,NaN,NaN,y^x,NaN
+9,NaN,NaN,/,NaN
+10,NaN,NaN,*,NaN
+11,NaN,NaN,-,NaN
+12,NaN,NaN,+,NaN
+13,6.0,2.0,x mod y,0.0
+14,6.0,4.0,x mod y,2.0
