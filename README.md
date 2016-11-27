@@ -1,3 +1,4 @@
+![alt tag](https://raw.githubusercontent.com/zakupower/Simple-Java-Calculator/master/screens/Screenshot1.jpg)
 # Simple-Java-Calculator
 - Addition , Substraction , Multiplication, Division, x to the power of y , y to the power of x
 - Operations History
