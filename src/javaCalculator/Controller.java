@@ -188,6 +188,6 @@ public class Controller {
     }
     private boolean isNumeric(String str)
     {
-        return str.matches("\\d+|(\\.\\d+)|(-\\d+)");  //match a number and number with decimal .
+        return str.matches("(\\d+.\\d+)|(-\\d+.\\d+)|(\\d+)|(-\\d+)");  //match an integer and number with decimal .
     }
 }
